@@ -1,0 +1,71 @@
+{% extends "blog/base.html" %}
+{% load static %}
+{% block title %}Sign Up{% endblock %}
+{% block content %}
+<div class="auth-container">
+    <h1>Sign Up</h1>
+    <form method="post" action="{% url 'register' %}">
+        {% csrf_token %}
+        <input type="text" name="username" placeholder="Username" required value="{{ register_form.username.value|default:'' }}">
+        {% if register_form.username.errors %}
+            <ul class="form-errorlist">{% for error in register_form.username.errors %}<li>{{ error }}</li>{% endfor %}</ul>
+        {% endif %}
+
+        <input type="email" name="email" placeholder="Email" required value="{{ register_form.email.value|default:'' }}">
+        {% if register_form.email.errors %}
+            <ul class="form-errorlist">{% for error in register_form.email.errors %}<li>{{ error }}</li>{% endfor %}</ul>
+        {% endif %}
+
+        <div class="password-field">
+            <input type="password" name="password1" id="signup-password1" placeholder="Password" required>
+            <span class="toggle-password" id="signup-password1-toggle">
+                <img src="{% static 'eye.svg' %}" alt="" id="signup-eye1-open" style="display:inline;">
+                <img src="{% static 'eye-slash.svg' %}" alt="" id="signup-eye1-slash" style="display:none;">
+            </span>
+        </div>
+        {% if register_form.password1.errors %}
+            <ul class="form-errorlist">{% for error in register_form.password1.errors %}<li>{{ error }}</li>{% endfor %}</ul>
+        {% endif %}
+
+        <div class="password-field">
+            <input type="password" name="password2" id="signup-password2" placeholder="Confirm Password" required>
+            <span class="toggle-password" id="signup-password2-toggle">
+                <img src="{% static 'eye.svg' %}" alt="" id="signup-eye2-open" style="display:inline;">
+                <img src="{% static 'eye-slash.svg' %}" alt="" id="signup-eye2-slash" style="display:none;">
+            </span>
+        </div>
+        {% if register_form.password2.errors %}
+            <ul class="form-errorlist">{% for error in register_form.password2.errors %}<li>{{ error }}</li>{% endfor %}</ul>
+        {% endif %}
+
+        {% if register_form.non_field_errors %}
+            <div class="error-banner">{% for error in register_form.non_field_errors %}{{ error }}{% endfor %}</div>
+        {% endif %}
+
+        <button type="submit">Sign Up</button>
+        <p class="switch-link">Already have an account? <a href="{% url 'login' %}">Sign in here</a></p>
+    </form>
+</div>
+<script>
+window.addEventListener("DOMContentLoaded", function() {
+    const toggleVisibility = (inputId, openId, slashId) => {
+        const passwordInput = document.getElementById(inputId);
+        const eyeOpen = document.getElementById(openId);
+        const eyeSlash = document.getElementById(slashId);
+        eyeOpen.parentNode.addEventListener("click", () => {
+            if (passwordInput.type === "password") {
+                passwordInput.type = "text";
+                eyeOpen.style.display = "none";
+                eyeSlash.style.display = "inline";
+            } else {
+                passwordInput.type = "password";
+                eyeOpen.style.display = "inline";
+                eyeSlash.style.display = "none";
+            }
+        });
+    };
+    toggleVisibility("signup-password1", "signup-eye1-open", "signup-eye1-slash");
+    toggleVisibility("signup-password2", "signup-eye2-open", "signup-eye2-slash");
+});
+</script>
+{% endblock %}

@@ -1,0 +1,96 @@
+{% extends "blog/base.html" %}
+{% load static %}
+{% block title %}Sign In{% endblock %}
+{% block content %}
+<div class="auth-container">
+    <h1>Sign In</h1>
+    <form method="post" action="{% url 'login' %}">
+        {% csrf_token %}
+        
+        <!-- Username -->
+        <input type="text" name="username" placeholder="Username" required value="{{ login_form.username.value|default:'' }}">
+        {% if login_form.username.errors %}
+            <ul class="form-errorlist">
+                {% for error in login_form.username.errors %}
+                    <li>{{ error }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+        <!-- Password -->
+        <div class="password-field">
+            <input type="password" name="password" id="login-password" placeholder="Password" required>
+            <span class="toggle-password" id="login-password-toggle">
+                <img src="{% static 'eye.svg' %}" alt="" id="login-eye-open" style="display:inline;">
+                <img src="{% static 'eye-slash.svg' %}" alt="" id="login-eye-slash" style="display:none;">
+            </span>
+        </div>
+        {% if login_form.password.errors %}
+            <ul class="form-errorlist">
+                {% for error in login_form.password.errors %}
+                    <li>{{ error }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+        <!-- Forgot password link NOW moved just below password field -->
+        <p class="forgot-link">
+            <a href="{% url 'password_reset' %}">Forgot password?</a>
+        </p>
+
+        <!-- Non-field errors -->
+        {% if login_form.non_field_errors %}
+            <div class="error-banner">
+                {% for error in login_form.non_field_errors %}
+                    {{ error }}
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        <!-- Sign in button -->
+        <button type="submit">Sign In</button>
+
+        <!-- Sign up link -->
+        <p class="switch-link">
+            Don't have an account? <a href="{% url 'register' %}">Sign up here</a>
+        </p>
+
+        {% if messages %}
+            {% for message in messages %}
+                <div class="success-toast" id="success-toast">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+    </form>
+</div>
+
+<script>
+window.addEventListener("DOMContentLoaded", function() {
+    // Success toast auto-hide
+    var toast = document.getElementById("success-toast");
+    if (toast) {
+        setTimeout(function() {
+            toast.style.opacity = 0;
+            setTimeout(function() { toast.style.display = "none"; }, 600);
+        }, 4000);
+    }
+
+    // Password visibility toggle
+    const passwordInput = document.getElementById("login-password");
+    const toggle = document.getElementById("login-password-toggle");
+    const eyeOpen = document.getElementById("login-eye-open");
+    const eyeSlash = document.getElementById("login-eye-slash");
+
+    toggle.addEventListener("click", function() {
+        if (passwordInput.type === "password") {
+            passwordInput.type = "text";
+            eyeOpen.style.display = "none";
+            eyeSlash.style.display = "inline";
+        } else {
+            passwordInput.type = "password";
+            eyeOpen.style.display = "inline";
+            eyeSlash.style.display = "none";
+        }
+    });
+});
+</script>
+{% endblock %}

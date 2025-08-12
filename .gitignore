@@ -1,0 +1,62 @@
+# Python bytecode and cache
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pyc
+
+# Virtual environment
+env/
+venv/
+ENV/
+.venv/
+
+# OS system files
+.DS_Store
+Thumbs.db
+
+# Editor/IDE settings
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Django specific
+*.sqlite3
+db.sqlite3
+/staticfiles/
+/media/
+/static/admin/
+/staticfiles/admin/
+/staticfiles/style.css
+
+# Migrations (keep __init__.py)
+*/migrations/*.py
+!*/migrations/__init__.py
+
+# Logs
+*.log
+
+# Python packaging
+build/
+develop-eggs/
+dist/
+.eggs/
+parts/
+sdist/
+var/
+wheels/
+pip-wheel-metadata/
+share/python-wheels/
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.nox/
+.coverage
+coverage.xml
+*,cover
+.hypothesis/
+
+# Environment variables file
+.env

@@ -1,0 +1,218 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,600&display=swap');
+
+* { 
+    box-sizing: border-box; 
+    margin: 0; 
+    padding: 0; 
+}
+
+body {
+    font-family: 'Montserrat', Arial, sans-serif;
+    background-color: #f5f2e9;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+/* Container for auth forms and profile box */
+.auth-container {
+    max-width: 360px;
+    width: 96%;
+    margin-top: 80px;
+    background-color: #fffaf0;
+    padding: 32px 28px 20px 28px;
+    border-radius: 10px;
+    border: 1px solid #e6dcc7;
+    box-shadow: 0 6px 20px rgba(166,124,82,0.12);
+}
+
+.auth-container h1 {
+    text-align: center;
+    font-size: 1.8em;
+    margin-bottom: 28px;
+    font-weight: 600;
+    color: #6b4f2b;
+}
+
+.auth-container form { 
+    display: flex; 
+    flex-direction: column; 
+}
+
+.auth-container input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 14px;
+    border-radius: 5px;
+    border: 1.1px solid #c9bfa7;
+    font-size: 15px;
+    background-color: #fff;
+    color: #333;
+}
+
+.auth-container input:focus { 
+    border-color: #a67c52; 
+    outline: none; 
+}
+
+button {
+    padding: 13px 0; 
+    background-color: #a67c52; 
+    border: none; 
+    color: white;
+    font-size: 16px; 
+    font-weight: 600; 
+    border-radius: 5px;
+    cursor: pointer; 
+    transition: background-color 0.12s;
+}
+
+button:hover { 
+    background-color: #8b643f; 
+}
+
+/* Error list under inputs */
+.form-errorlist { 
+    color: #b01f1f; 
+    font-size: 13px; 
+    margin-bottom: 8px; 
+    list-style: none; 
+}
+
+/* Banner for non-field errors */
+.error-banner {
+    color: #b01f1f;
+    background: #fff5f5;
+    border-radius: 5px;
+    padding: 9px;
+    margin-bottom: 10px;
+    text-align: center;
+    border: 1px solid #eecaca;
+}
+
+/* Switch link for login/register */
+.switch-link {
+    text-align: center;
+    margin-top: 14px;
+    font-size: 14px;
+    color: #5a4631;
+}
+
+.switch-link a { 
+    color: #8b643f; 
+    text-decoration: none; 
+    font-weight: bold; 
+}
+
+.switch-link a:hover { 
+    text-decoration: underline; 
+}
+
+/* Success toast for actions like "Account created" */
+.success-toast {
+    margin: 18px auto 0;
+    background: #f7e6be;
+    color: #7a633b;
+    border: 1.5px solid #e1ce9d;
+    border-radius: 7px;
+    padding: 12px 18px;
+    font-size: 15px;
+    text-align: center;
+    box-shadow: 0 2px 9px rgba(166,124,82,0.08);
+    transition: opacity 0.6s;
+}
+
+/* Password field with eye icon */
+.password-field { 
+    position: relative; 
+}
+
+.password-field input { 
+    padding-right: 42px; 
+}
+
+.toggle-password {
+    position: absolute;
+    top: 50%;
+    right: 12px;
+    transform: translateY(-50%);
+    cursor: pointer;
+    width: 22px;
+    height: 22px;
+    display: flex;
+    align-items: center;
+}
+
+.toggle-password img {
+    width: 22px;
+    height: 22px;
+    vertical-align: middle;
+}
+
+/* Responsive layout */
+@media (max-width: 470px) {
+    .auth-container { 
+        width: 100%; 
+        padding: 18px 9px 16px 9px; 
+    }
+}
+
+/* Logout link styling */
+.logout-link {
+    color: #1575d1;             /* Blue by default */
+    font-weight: 600;
+    font-size: 1.12em;
+    text-decoration: none;
+    letter-spacing: 0.05em;
+    transition: color 0.18s;
+    padding: 11px 28px;
+    border-radius: 6px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    margin-bottom: 2px;
+    display: inline-block;
+}
+
+.logout-link:active,
+.logout-link:focus,
+.logout-link:hover {
+    color: #7d38e6;             /* Purple on hover/click */
+    background: #f5f2e9;
+    text-decoration: underline;
+}
+
+/* Forgot password link: moved up under password input */
+.forgot-link {
+    text-align: right;
+    font-size: 14px;
+    margin-top: 6px;           /* space from password input */
+    margin-bottom: 14px;       /* space before Sign In button */
+}
+.forgot-link a {
+    color: #0074dc;            /* Blue by default */
+    text-decoration: none;
+    font-weight: 600;
+}
+.forgot-link a:hover,
+.forgot-link a:active,
+.forgot-link a:focus {
+    color: #6a3181;            /* Purple on hover/click */
+    text-decoration: underline;
+}
+
+/* Back to Login link styling (more spacing down) */
+.back-login-link {
+    display: inline-block;
+    margin-top: 20px;           /* pushes link further down */
+    color: #0074dc;             /* Blue default */
+    font-weight: 600;
+    text-decoration: none;
+}
+.back-login-link:hover,
+.back-login-link:active,
+.back-login-link:focus {
+    color: #6a3181;             /* Purple when hovered/clicked */
+    text-decoration: underline;
+}
