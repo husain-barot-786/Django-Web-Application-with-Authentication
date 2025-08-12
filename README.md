@@ -145,6 +145,5 @@ Django-Web-Application-with-Authentication/
 - Role-based access controls.
 - Advanced user analytics and dashboard.
 - Deployment-ready configuration for cloud hosting.
-```
 
 ---
